@@ -1,0 +1,429 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+}
+
+section {
+  height: 100vh;
+  background-image: -webkit-gradient(linear, left top, right top, from(#e100ff), to(#ff5e00));
+  background-image: linear-gradient(90deg, #e100ff, #ff5e00);
+  font-family: 'Palanquin', sans-serif;
+}
+
+header {
+  padding-top: 10px;
+  min-height: 6rem;
+  text-align: center;
+  min-height: 5rem;
+  height: 15vh;
+  font-size: 3rem;
+}
+
+.intro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.intro h1 {
+  font-size: 2rem;
+}
+
+.intro form {
+  padding: 1rem;
+}
+
+.intro li {
+  font-size: 2rem;
+}
+
+li {
+  list-style: none;
+}
+
+.intro button {
+  border-radius: 3px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #210457;
+  background-color: #d6dce4;
+}
+
+.intro input {
+  padding: 0.5rem;
+  background-color: #d6dce4;
+}
+
+.addPlayer,
+.removePlayer {
+  width: 5rem;
+  position: relative;
+  bottom: 0.5rem;
+}
+
+.addPlayer i,
+.removePlayer i {
+  padding-right: 0.5rem;
+}
+
+.startGame {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.intro button:hover {
+  background-color: #e100ffa9;
+  color: #fff;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.addRemoveBtn {
+  position: relative;
+  bottom: 20px;
+}
+
+.addRemoveBtn li {
+  display: inline;
+}
+
+.turnMessage {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 3.5rem;
+}
+
+.turnMessage span {
+  text-align: center;
+  color: black;
+  padding: 0px 20px;
+  width: auto;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.match {
+  position: absolute;
+  height: 30rem;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: opacity 0.5s ease 0.5s;
+  transition: opacity 0.5s ease 0.5s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.match header {
+  position: relative;
+  bottom: 3rem;
+}
+
+.match h1 {
+  text-align: center;
+  margin: 5px;
+}
+
+.match img,
+.match .diceSection button {
+  height: 80px;
+  width: 80px;
+}
+
+.match button {
+  cursor: pointer;
+}
+
+.middleSection {
+  width: 45rem;
+  height: 25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.gameBox,
+.roundScore {
+  color: white;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.384);
+  border-radius: 6px;
+}
+
+.roundScore {
+  padding: 0;
+  width: 35%;
+}
+
+.totalScore {
+  padding: 1rem;
+  width: 20rem;
+  color: white;
+}
+
+.gameBox {
+  padding: 1rem;
+  width: 63%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.gameBox .rollBtn {
+  height: 3rem;
+  width: 8rem;
+  margin: auto;
+  border-radius: 3px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #210457;
+  background-color: #d6dce4;
+}
+
+.gameBox .rollBtn:hover {
+  background-color: #e100ffa9;
+  color: #fff;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.diceSection {
+  height: 15rem;
+  text-align: center;
+}
+
+.diceSection button {
+  background: none;
+  pointer-events: none;
+  margin: 0px 20px;
+}
+
+.diceSection button:hover {
+  border-radius: 50%;
+  background: #ff5e0098;
+}
+
+.diceSection button:active {
+  background: #ff5e00c5;
+}
+
+.diceSection button:focus {
+  outline-style: none;
+}
+
+.diceSection p {
+  margin: 10px 0;
+  opacity: 0;
+}
+
+.diceSection span {
+  color: white;
+  font-size: 2rem;
+  position: relative;
+  bottom: 3.5rem;
+}
+
+.diceSection .d6 span {
+  right: 2px;
+}
+
+.diceSection .d8 span {
+  bottom: 3.8rem;
+  right: 1px;
+}
+
+.diceSection .d10 span {
+  bottom: 3.7rem;
+  font-size: 1.6rem;
+}
+
+.diceSection .d20 span {
+  font-size: 1.2rem;
+}
+
+.diceSection .d10, .diceSection .d20 {
+  margin: 10px 7px 0px 7px;
+}
+
+.tableScore {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  margin-left: 1rem;
+}
+
+.tableScore span {
+  margin-left: 1rem;
+}
+
+.selectedDices {
+  border-top: solid 1px #d6dce4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.selectedDices ul {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.selectedDices img {
+  height: 50px;
+  width: 50px;
+}
+
+.selectedDices li {
+  opacity: 0;
+  margin-top: 0.5rem;
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.selectedDices .scoreD4 {
+  background-image: url("../assets/d4.png");
+}
+
+.selectedDices .scoreD6 {
+  background-image: url("../assets/d6.png");
+}
+
+.selectedDices .scoreD8 {
+  background-image: url("../assets/d8.png");
+}
+
+.selectedDices .scoreD10 {
+  background-image: url("../assets/d10.png");
+}
+
+.selectedDices .scoreD20 {
+  background-image: url("../assets/d20.png");
+}
+
+.selectedDices span {
+  color: white;
+  font-size: 1.4rem;
+  position: relative;
+  top: 0.2rem;
+  pointer-events: none;
+}
+
+.selectedDices .scoreD10 span,
+.selectedDices .scoreD20 span {
+  font-size: 1.1rem;
+  top: 5px;
+}
+
+.spanName {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  display: none;
+  -webkit-animation: all 0.3 ease;
+          animation: all 0.3 ease;
+}
+
+@-webkit-keyframes shakeDice {
+  0% {
+    pointer-events: none;
+    -webkit-transform: rotateZ(0deg) translateY(0px);
+            transform: rotateZ(0deg) translateY(0px);
+  }
+  99% {
+    pointer-events: none;
+  }
+  100% {
+    pointer-events: all;
+    -webkit-transform: rotateZ(1080deg);
+            transform: rotateZ(1080deg);
+  }
+}
+
+@keyframes shakeDice {
+  0% {
+    pointer-events: none;
+    -webkit-transform: rotateZ(0deg) translateY(0px);
+            transform: rotateZ(0deg) translateY(0px);
+  }
+  99% {
+    pointer-events: none;
+  }
+  100% {
+    pointer-events: all;
+    -webkit-transform: rotateZ(1080deg);
+            transform: rotateZ(1080deg);
+  }
+}
+/*# sourceMappingURL=style.css.map */

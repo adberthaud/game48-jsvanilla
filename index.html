@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game 48</title>
+    <link rel="stylesheet" href="./syles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Palanquin&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section class="game">
+        <div class="intro ">
+            <header>
+            <h1>Type Player Names</h1>
+            </header>
+            <form class='playerForm'>
+                <ul>
+                <li><input class='p1Name' type="text" placeholder="*required" required="required"></li>
+                <li><input class='p2Name' type="text" placeholder="*required" required="required"></li>
+                </ul>
+            </form>
+            <ul class='addRemoveBtn'>
+            <li><button class='addPlayer'><i class="fas fa-plus-square"></i>Player</button></li>
+            <li><button class='removePlayer'><i class="fas fa-minus-square"></i>Player</i></button></li> 
+            </ul>
+            <button type="submit" class='startGame'>Start the game</button>
+        </div>
+
+        <div class="turnMessage">
+            <span>It's my turn</span>
+        </div>
+
+        <div class="match fadeOut">
+            <header>Game 48</header>
+
+            <div class="middleSection">
+                <div class="gameBox">
+                    <button class='rollBtn'>Roll Dices <i class="fas fa-dice"></i></button>
+                    <div class="diceSection">
+                        <p>Pick 1 or 2 dices!</p>
+                        <button class='d4'><img src="./assets/d4.png" alt="d4"><span>?</span></button>
+                        <button class='d6'><img src="./assets/d6.png" alt="d6"><span>?</span></button>
+                        <button class='d8'><img src="./assets/d8.png" alt="d8"><span>?</span></button>
+                        <button class='d10'><img src="./assets/d10.png" alt="d10"><span>?</span></button>
+                        <button class='d20'><img src="./assets/d20.png" alt="d20"><span>?</p></button>
+                    </div>
+
+                    <div class="tableScore">
+                        Score:<span>0</span>
+                    </div>
+
+                    <div class="selectedDices">
+                        <ul>
+                            <li class='scoreD4'><span>4</span></li>
+                            <li class='scoreD6'><span>6</span></li>
+                            <li class='scoreD8'><span>8</span></li>
+                            <li class='scoreD10'><span>10</span></li>
+                            <li class='scoreD20'><span>20</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roundScore">
+                    <h1>Round Score</h1>
+                    <ul class ='pRoundScoreList'></ul>
+                </div>
+            </div>
+
+            <div class="totalScore">
+                <h1>Total Score</h1>
+                <ul class ='pTotalScoreList'>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="./app.js"></script>
+</body>
+</html>

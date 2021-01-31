@@ -1,0 +1,343 @@
+@mixin button {
+    border-radius: 3px;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #210457;
+    background-color: #d6dce4;
+    &:hover {
+        background-color: #e100ffa9;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+}  
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+section {
+    height: 100vh;
+    background-image: linear-gradient(90deg, #e100ff, #ff5e00);
+    font-family: 'Palanquin', sans-serif;
+} 
+
+header {
+    padding-top: 10px;
+    min-height: 6rem;
+    text-align: center;
+    min-height: 5rem;
+    height: 15vh;
+    font-size: 3rem;
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-size: 2rem;
+    }
+    form {
+        padding: 1rem;
+    }
+
+    li {
+        font-size: 2rem;
+    }
+}
+
+li {
+    list-style: none;
+}
+
+.intro button {
+    border-radius: 3px;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #210457;
+    background-color: #d6dce4;
+}
+
+.intro input {
+    padding: 0.5rem;
+    background-color:#d6dce4;
+}
+
+.addPlayer,
+.removePlayer {
+    width: 5rem;
+    position: relative;
+    bottom: 0.5rem;
+
+    i {
+        padding-right: 0.5rem;
+    }
+}
+
+.startGame {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.intro button:hover {
+    background-color: #e100ffa9;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.addRemoveBtn{
+    position: relative;
+    bottom: 20px;
+    li {
+        display: inline;
+    }
+}
+
+.turnMessage {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 1s ease; 
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    span {
+        text-align: center;
+        color: black; 
+        padding: 0px 20px;
+        width: auto;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 1);
+    }
+}
+
+.match {
+    position: absolute;
+    height: 30rem;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: opacity 0.5s ease 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    header {
+        position: relative;
+        bottom: 3rem;
+    }
+
+    h1 { 
+        text-align: center; 
+        margin: 5px;
+    }
+
+    img,
+    .diceSection button {
+    height: 80px;
+    width: 80px;
+    }
+
+    button {
+        cursor: pointer;
+    }
+}
+
+.middleSection {
+    width: 45rem;
+    height: 25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameBox,
+.roundScore{
+    color: white;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.384);
+    border-radius: 6px;
+}
+
+.roundScore {
+    padding: 0;
+    width: 35%;
+}
+
+.totalScore{ 
+    padding: 1rem;
+    width: 20rem;
+    color: white;
+}
+
+.gameBox {
+    padding: 1rem;
+    width: 63%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .rollBtn {
+        height: 3rem;
+        width: 8rem;
+        margin: auto;
+        border-radius: 3px;
+        padding: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        color: #210457;
+        background-color: #d6dce4;
+        &:hover{
+            background-color: #e100ffa9;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+.diceSection {
+    height: 15rem;
+    text-align: center;
+    button {
+        background: none;
+        pointer-events: none;
+        margin: 0px 20px;
+        &:hover {
+            border-radius: 50%;
+            background: #ff5e0098;
+        }
+        &:active{
+            background: #ff5e00c5;
+        } 
+        &:focus {
+            outline-style: none;
+        }
+    } 
+    p {
+        margin: 10px 0;
+        opacity: 0;
+    }
+    span {
+        color: white;
+        font-size: 2rem;
+        position: relative;
+        bottom: 3.5rem;
+    }
+    .d6 span {
+        right: 2px;
+    }
+    .d8 span {
+        bottom: 3.8rem;
+        right: 1px
+    }
+    .d10 span {
+        bottom: 3.7rem;
+        font-size: 1.6rem;
+    }
+    .d20 span {
+        font-size: 1.2rem;
+    }
+    .d10, .d20 {
+        margin: 10px 7px 0px 7px;
+    }
+}
+
+.tableScore {
+    transition: all 1s ease;
+    margin-left: 1rem;
+    span {
+        margin-left: 1rem;
+    }
+}
+
+.selectedDices {
+    border-top: solid 1px #d6dce4;
+    display: flex;
+    justify-content: center;
+    ul {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+    }
+    img {
+        height: 50px;
+        width: 50px;
+    }
+    li {
+        opacity: 0;
+        margin-top: 0.5rem;
+        width: 50px;
+        height: 50px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+    }
+    .scoreD4 {
+        background-image: url('../assets/d4.png');
+    }
+    .scoreD6 {
+        background-image: url('../assets/d6.png');
+    }
+    .scoreD8 {
+        background-image: url('../assets/d8.png');
+    }
+    .scoreD10 {
+        background-image: url('../assets/d10.png');
+    }
+    .scoreD20 {
+        background-image: url('../assets/d20.png');
+    }
+    span {
+        color: white;
+        font-size: 1.4rem;
+        position: relative;
+        top: 0.2rem;
+        pointer-events: none;
+    }
+    .scoreD10 span,
+    .scoreD20 span {
+        font-size: 1.1rem;
+        top: 5px;
+    }
+}
+
+.spanName {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.fadeIn {
+    opacity: 1;
+}
+
+.fadeOut {
+    display: none;
+    animation: all 0.3 ease;
+}
+
+@keyframes shakeDice {
+    0% {
+        pointer-events: none;
+        transform: rotateZ(0deg) translateY(0px);
+    }
+    99% {
+        pointer-events: none;
+    }
+    100% {
+        pointer-events: all;
+        transform: rotateZ(1080deg);
+    }
+}
