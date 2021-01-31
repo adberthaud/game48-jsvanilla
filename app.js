@@ -55,7 +55,7 @@ function addPlayer(event){
     // CREATION OF INPUT
     const playerInput = document.createElement('input');
     playerInput.placeholder = '*required';
-    playerInput.classList.add(`p${playerCount}Name`);
+    playerInput.classList.add(`pName`);
     // APPEND TO LI ELEMENT
     playerLi.appendChild(playerInput);
     playerForm.appendChild(playerLi);
@@ -77,56 +77,28 @@ function removePlayer (event) {
 }
 
 function startGame () {
-    // Get input Values for players. Put in Array.
     collectingPlayerNames();
-
     generatePlayerLines();
-
     // CREATING THE LIST OF SCORES
-    
     mappingScoreToPlayers();
-
     intro.classList.toggle('fadeOut');
     match.classList.toggle('fadeOut');
     newTurn(listOfPlayer[0]);
     listOfRoundScore.map(x => parseInt(x));
-
 }
 
 function collectingPlayerNames () {
-    const p1Name = document.querySelector('.intro .p1Name');
-    const p2Name = document.querySelector('.intro .p2Name');
-    const p3Name = document.querySelector('.intro .p3Name');
-    const p4Name = document.querySelector('.intro .p4Name');
-    const p5Name = document.querySelector('.intro .p5Name');
-
-    if (playerCount === 5) {
-        listOfPlayer.push(p1Name.value, p2Name.value, p3Name.value, p4Name.value, p5Name.value);
-    } else if (playerCount === 4){
-        listOfPlayer.push(p1Name.value, p2Name.value, p3Name.value, p4Name.value);
-    } else if (playerCount === 3){
-        listOfPlayer.push(p1Name.value, p2Name.value, p3Name.value);
-    } else {
-        listOfPlayer.push(p1Name.value, p2Name.value);
-    }
+    const pNames = document.querySelectorAll('.intro .pName');
+    for (let i = 0; i < pNames.length; i++) {
+        listOfPlayer.push(pNames[i].value)
+    } 
 }
-
 function mappingScoreToPlayers() {
-    const p1Score = document.querySelector('.pRoundScoreList .p1Score');
-    const p2Score = document.querySelector('.pRoundScoreList .p2Score');
-    const p3Score = document.querySelector('.pRoundScoreList .p3Score');
-    const p4Score = document.querySelector('.pRoundScoreList .p4Score');
-    const p5Score = document.querySelector('.pRoundScoreList .p5Score');
-
-    if (playerCount === 5) {
-        listOfRoundScore.push(p1Score.innerText, p2Score.innerText, p3Score.innerText, p4Score.innerText, p5Score.innerText);
-    } else if (playerCount === 4){
-        listOfRoundScore.push(p1Score.innerText, p2Score.innerText, p3Score.innerText, p4Score.innerText);
-    } else if (playerCount === 3){
-        listOfRoundScore.push(p1Score.innerText, p2Score.innerText, p3Score.innerText);
-    } else {
-        listOfRoundScore.push(p1Score.innerText, p2Score.innerText);
-    };
+    const pScores = document.querySelectorAll('.pRoundScoreList .pScore');
+    
+    for (let i = 0; i < pScores.length; i++) {
+        listOfRoundScore.push(parseInt(pScores[i].innerText))
+    } 
 }
 
 function generatePlayerLines() {
@@ -139,7 +111,7 @@ function generatePlayerLines() {
         playerName1.classList.add('spanName');
             // SCORE OF PLAYER
         const playerRoundScore = document.createElement('span');
-        playerRoundScore.classList.add(`p${i+1}Score`);
+        playerRoundScore.classList.add(`pScore`);
         playerRoundScore.innerText = 0;
         pRoundScoreList.appendChild(playerLi1);
         playerLi1.appendChild(playerName1);
@@ -151,7 +123,7 @@ function generatePlayerLines() {
         playerName2.innerText = `${listOfPlayer[i]} :`;
         playerName2.classList.add('spanName');
         const playerTotalScore = document.createElement('span');
-        playerTotalScore.classList.add(`p${i+1}Score`);
+        playerTotalScore.classList.add(`pScore`);
         pTotalScoreList.appendChild(playerLi2);
         playerLi2.appendChild(playerName2);
         playerLi2.appendChild(playerTotalScore);
@@ -185,6 +157,7 @@ let dCount = 0;
 
 // GENERATING NUMBERS
 function diceResultGen () { 
+    const rangeOfDices = [4, 6, 8, 10, 20];
     if (dCount < 5) {
         dValues[0].innerText = (Math.ceil(Math.random() * 4));
         dValues[1].innerText = (Math.ceil(Math.random() * 6));
