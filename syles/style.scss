@@ -49,23 +49,50 @@ header {
     li {
         font-size: 2rem;
     }
+    button {
+        border-radius: 3px;
+        padding: 0.5rem;
+        cursor: pointer;
+        color: #210457;
+        background-color: #d6dce4;
+        &:hover {
+            background-color: #e100ffa9;
+            color: #fff;
+            transition: all 0.3s ease;
+            }
+        }
+    input {
+        padding: 0.5rem;
+        background-color:#d6dce4;
+    }
+    .parameters {
+        .numberRounds,
+        .pointToEuro {
+            margin-left: 5.5rem;
+        }
+        // text-align: center;
+        color: white;
+        p {
+            text-align: center;
+            color: rgba(231, 231, 231, 0.795);
+        }
+    
+    }
+    select {
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    .startGame {
+        margin-top: 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+    }
 }
 
 li {
     list-style: none;
-}
-
-.intro button {
-    border-radius: 3px;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #210457;
-    background-color: #d6dce4;
-}
-
-.intro input {
-    padding: 0.5rem;
-    background-color:#d6dce4;
 }
 
 .addPlayer,
@@ -73,21 +100,9 @@ li {
     width: 5rem;
     position: relative;
     bottom: 0.5rem;
-
     i {
         padding-right: 0.5rem;
     }
-}
-
-.startGame {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.intro button:hover {
-    background-color: #e100ffa9;
-    color: #fff;
-    transition: all 0.3s ease;
 }
 
 .addRemoveBtn{
@@ -98,7 +113,7 @@ li {
     }
 }
 
-.turnMessage {
+.whiteTransition {
     opacity: 0;
     pointer-events: none;
     transition: all 1s ease; 
@@ -106,19 +121,34 @@ li {
     width: 100%;
     z-index: 2;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 3.5rem;
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+    }
+    .tableOfFinalScore {
+        span {
+            font-size: 2rem;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .disclaimer {
+            font-size: 10px;
+        }
+    }
     span {
         text-align: center;
         color: black; 
         padding: 0px 20px;
         width: auto;
         border-radius: 4px;
-        background-color: rgba(255, 255, 255, 1);
+        // background-color: rgba(255, 255, 255, 1);
     }
 }
 
@@ -325,7 +355,6 @@ li {
 
 .fadeOut {
     display: none;
-    animation: all 0.3 ease;
 }
 
 @keyframes shakeDice {

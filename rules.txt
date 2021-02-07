@@ -1,0 +1,20 @@
+Antonin: 
+    idées d'ajout:
+    - Modifier le set de dés
+        pour accentuer la prise de risque: 
+            mettre 2 dés 4
+            mettre des plus gros dés
+
+App responsive
+
+Chaque point vaut tant d'euros:
+- 10 centimes (fait 10 euros pour une grosse partie)
+
+Roadmap des features:
+- Prendre en compte l'égalité
+- Selection nombre de rounds 
+- Chnager valeur du point (défaut 10cent)
+- Panneau Fin de jeu (reprise du Layout blanc qui sépare les tours)
+
+- Navbar avec Rules et Credits sections
+- Tutorial

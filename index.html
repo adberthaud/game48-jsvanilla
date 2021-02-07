@@ -12,7 +12,7 @@
 <body>
 
     <section class="game">
-        <div class="intro ">
+        <div class="intro">
             <header>
             <h1>Type Player Names</h1>
             </header>
@@ -26,11 +26,43 @@
             <li><button class='addPlayer'><i class="fas fa-plus-square"></i>Player</button></li>
             <li><button class='removePlayer'><i class="fas fa-minus-square"></i>Player</i></button></li> 
             </ul>
+            <div class="parameters">
+                <div class="numberRounds">Select number of rounds : 
+                    <select class='roundParameter'>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option selected value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="pointToEuro">Select value of one point :
+                    <select class='euroParameter'>
+                        <option value="0.05">0.05€</option>
+                        <option selected value="0.1">0.10€ (default)</option>
+                        <option value="0.15">0.15€</option>
+                        <option value="0.2">0.20€</option>
+                        <option value="0.5">0.50€</option>
+                    </select>
+                </div>
+                <p>note: 3 rounds with 0.10€ can make a game up to 10€ of bet</p>
+                
+            </div>
             <button type="submit" class='startGame'>Start the game</button>
         </div>
 
-        <div class="turnMessage">
-            <span>It's my turn</span>
+        <div class="whiteTransition">
+            <span class='turnMessage'>It's my turn</span>
+            <div class="tableOfFinalScore fadeOut">
+                <h1>Final Scores:</h1>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="disclaimer">*the team behind Game48 takes no responsibility for any of either bank problems or couple arguments</div>
+                <!-- <button>Play More !</button> -->
+            </div>
         </div>
 
         <div class="match fadeOut">

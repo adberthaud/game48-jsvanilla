@@ -50,10 +50,6 @@ header {
   font-size: 2rem;
 }
 
-li {
-  list-style: none;
-}
-
 .intro button {
   border-radius: 3px;
   padding: 0.5rem;
@@ -62,9 +58,44 @@ li {
   background-color: #d6dce4;
 }
 
+.intro button:hover {
+  background-color: #e100ffa9;
+  color: #fff;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
 .intro input {
   padding: 0.5rem;
   background-color: #d6dce4;
+}
+
+.intro .parameters {
+  color: white;
+}
+
+.intro .parameters .numberRounds,
+.intro .parameters .pointToEuro {
+  margin-left: 5.5rem;
+}
+
+.intro .parameters p {
+  text-align: center;
+  color: rgba(231, 231, 231, 0.795);
+}
+
+.intro select strong {
+  font-weight: bold;
+}
+
+.intro .startGame {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+li {
+  list-style: none;
 }
 
 .addPlayer,
@@ -79,18 +110,6 @@ li {
   padding-right: 0.5rem;
 }
 
-.startGame {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.intro button:hover {
-  background-color: #e100ffa9;
-  color: #fff;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
 .addRemoveBtn {
   position: relative;
   bottom: 20px;
@@ -100,7 +119,7 @@ li {
   display: inline;
 }
 
-.turnMessage {
+.whiteTransition {
   opacity: 0;
   pointer-events: none;
   -webkit-transition: all 1s ease;
@@ -109,7 +128,7 @@ li {
   width: 100%;
   z-index: 2;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.9);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -126,13 +145,33 @@ li {
   font-size: 3.5rem;
 }
 
-.turnMessage span {
+.whiteTransition h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.whiteTransition .tableOfFinalScore span {
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.whiteTransition .tableOfFinalScore .disclaimer {
+  font-size: 10px;
+}
+
+.whiteTransition span {
   text-align: center;
   color: black;
   padding: 0px 20px;
   width: auto;
   border-radius: 4px;
-  background-color: white;
 }
 
 .match {
@@ -391,8 +430,6 @@ li {
 
 .fadeOut {
   display: none;
-  -webkit-animation: all 0.3 ease;
-          animation: all 0.3 ease;
 }
 
 @-webkit-keyframes shakeDice {
