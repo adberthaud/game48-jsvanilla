@@ -12,6 +12,8 @@ Chaque point vaut tant d'euros:
 
 Roadmap des features:
 - Prendre en compte l'égalité
+- Mettre en avant le nom du joueur du tours
+
 - Selection nombre de rounds 
 - Chnager valeur du point (défaut 10cent)
 - Panneau Fin de jeu (reprise du Layout blanc qui sépare les tours)

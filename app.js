@@ -15,6 +15,7 @@ const pRoundScoreList = document.querySelector('.pRoundScoreList');
 const pTotalScoreList = document.querySelector('.pTotalScoreList');
 const rollDicesBtn = document.querySelector('.rollBtn');
 const tableScore = document.querySelector('.tableScore span');
+let handTurnMarker = 0;
 
 // Variables
 let playerCount = 2
@@ -85,6 +86,7 @@ function startGame () {
     playerTotalScore = document.querySelectorAll('.pTotalScoreList .pScore');
     roundParameter = document.querySelector('.roundParameter').value - 1; //First round starts at 0
     euroParameter = document.querySelector('.euroParameter').value;
+    handTurnMarker = document.querySelectorAll('.pRoundScoreList .spanName i');
 
     // Display changes:
     intro.classList.toggle('fadeOut');
@@ -105,7 +107,7 @@ function generatePlayerLines() {
             // NAME OF PLAYER
         const playerLi1 = document.createElement('li');
         const playerName1 = document.createElement('span');
-        playerName1.innerText = `${listOfPlayer[i]} :`;
+        playerName1.innerHTML = `<i class="fas fa-hand-point-right"></i> ${listOfPlayer[i]} :`; //i element is the hand pointer for marking who's turn it is
         playerName1.classList.add('spanName');
             // SCORE OF PLAYER
         const playerRoundScore = document.createElement('span');
@@ -141,6 +143,7 @@ function rollDices () {
         } else {
             // END OF TURN SCENARIO
             updateRoundScore(scoreRound);
+            handTurnMarker[turnCount].style.opacity = 0;
             newGameSetup();
             if(numberOfRound < roundParameter) {newTurn(listOfPlayer[turnCount])};
         }
@@ -204,6 +207,9 @@ function updateRoundScore(scoreRound){
 
 // WHITE TRANISTION SCREEN BETWEEN EACH TURN
 function newTurn (player) {
+    handTurnMarker[turnCount].style.opacity = 1;
+    // playerName[turnCount].innerHTML = turnCrownMarker.concat(playerName[turnCount].innerHTML);
+
     turnMessage.innerText = `It is ${player}'s turn`;
     whiteTransition.style.opacity = 1;
     // rollDicesBtn.style.pointerEvents = 'none';
@@ -226,6 +232,8 @@ function newGameSetup () {
     ableToSelect = 0;
     scoreRound = 0;
     updateTableScore(0);
+
+    handTurnMarker[turnCount].style.opacity = 1;
 
     dices.forEach(dice => {
         dice.style.animation = 'animationend';
