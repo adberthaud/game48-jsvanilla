@@ -10,7 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Palanquin&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    <!-- <div class="nav-background">
+        <nav>
+            <div class="logo">
+                Game 48
+            </div>
+            <ul class='nav-links'>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Rules</a>
+                </li>
+                <li>
+                    <a href="#">Credits</a>
+                </li>
+            </ul>
+        </nav>
+    </div> -->
     <section class="game">
         <div class="intro">
             <header>
@@ -45,10 +62,11 @@
                         <option value="0.5">0.50€</option>
                     </select>
                 </div>
-                <p>note: 3 rounds with 0.10€ can make a game up to 10€ of bet</p>
-                
+                <p>Bets can reach up to 14.10€ with parameters: 3 rounds and 0.10€</p>
             </div>
             <button type="submit" class='startGame'>Start the game</button>
+            <div class="tutorial">Guide me through with a tutorial <input type="checkbox" id="tutorial" value='true' ></div>
+
         </div>
 
         <div class="whiteTransition">
@@ -67,8 +85,35 @@
 
         <div class="match fadeOut">
             <header>Game 48</header>
-
             <div class="middleSection">
+                <div class="tutorialRule">
+                    <h1>The Rules</h1>
+                        <div class='rules'>
+                            <p>
+                                🎲 The player who reaches the <strong>highest score</strong> with all the dices will obtain the overall round pot. <br>
+                                👉 game48 is about forecasting your ability to win each round.
+                            </p>
+                            <p>
+                                🎲 <strong>The score you get</strong>  with your dices <strong>determinates your bet</strong> for the round. <br>
+                                👉 Got a high score and loses? you lose a lot of money.
+                            </p>
+                            <p>
+                                What a round looks like: <br>
+                                🎲 Player throws all dices at once <br>
+                                🎲 Player rerolls after 1 or 2 dices are picked and saved
+                            </p> 
+                        </div>
+                        <div class="buttonOk"><button class='tutorialRulesOkBtn'>OK</button></div>
+                </div>
+
+                <div class="tutorialScore">
+                    <h1>How Total Score Works</h1>
+                    <div class="scoreImg"></div>
+                    <p><strong>The winner</strong> of the Round wins the points of the other players <br>
+                    In this example, Marie won with 43 points. What does she gets ? Paul + Claudio's dice results</p>
+                    <div class="buttonOk"><button class='tutorialScoreOkBtn'>OK</button></div>
+                </div>
+
                 <div class="gameBox">
                     <button class='rollBtn'>Roll Dices <i class="fas fa-dice"></i></button>
                     <div class="diceSection">

@@ -3,10 +3,16 @@ const addPlayerBtn = document.querySelector('.addPlayer');
 const playerForm = document.querySelector('.playerForm');
 let roundParameter = 0;
 let euroParameter = 0;
+let tutorialOn = null;
 const startGameBtn = document.querySelector('.startGame');
 const removePlayerBtn = document.querySelector('.removePlayer');
 const intro = document.querySelector('.intro');
 const match = document.querySelector('.match');
+const tutorialRules = document.querySelector('.tutorialRule');
+const tutorialScore = document.querySelector('.tutorialScore');
+const tutorialRulesOkBtn = document.querySelector('.tutorialRulesOkBtn');
+const tutorialScoreOkBtn = document.querySelector('.tutorialScoreOkBtn');
+
 let listOfPlayer = [];
 let playerScores = [];
 const turnMessage = document.querySelector('.turnMessage');
@@ -21,6 +27,11 @@ let handTurnMarker = 0;
 let playerCount = 2
 let ableToRoll = 1;
 let ableToSelect = 0;
+let dCount = 0;
+let scoreRound = 0
+let turnCount = 0;
+let numberOfRound = 0;
+let winnerIndex = 0;
 
     // Dices variables
 const d4 = document.querySelector('.d4');
@@ -39,10 +50,13 @@ addPlayerBtn.addEventListener('click', addPlayer);
 removePlayerBtn.addEventListener('click', removePlayer);
 startGameBtn.addEventListener('click', startGame);
 rollDicesBtn.addEventListener('click', rollDices);
+tutorialRulesOkBtn.addEventListener('click',tutorialRulesOk);
+tutorialScoreOkBtn.addEventListener('click',tutorialScoreOk);
 dices.forEach(dice => {
 dice.addEventListener('animationend', function(){
     this.style.animation = '';
 })})
+
 // MAPPING EVENT LISTENER TO EACH DICE:
 for (let i = 0; i < 5; i++) {
     dices[i].addEventListener('click', function(){dSelection(i)})
@@ -56,7 +70,6 @@ function addPlayer(event){
     playerCount++;
     // CREATION OF LI
     const playerLi = document.createElement('li');
-    // CREATION OF INPUT
     const playerInput = document.createElement('input');
     playerInput.placeholder = '*required';
     playerInput.classList.add(`pName`);
@@ -87,11 +100,13 @@ function startGame () {
     roundParameter = document.querySelector('.roundParameter').value - 1; //First round starts at 0
     euroParameter = document.querySelector('.euroParameter').value;
     handTurnMarker = document.querySelectorAll('.pRoundScoreList .spanName i');
+    tutorialOn = document.querySelector('#tutorial').checked;  
 
     // Display changes:
     intro.classList.toggle('fadeOut');
     match.classList.toggle('fadeOut');
     newTurn(listOfPlayer[0]);
+    if (tutorialOn === true) {setTimeout(() => {tutoRules()}, 2000)};
 }
 
 function collectingPlayerNames () {
@@ -131,6 +146,20 @@ function generatePlayerLines() {
     }
 }
 
+function newTurn (player) {
+    rollDicesBtn.style.pointerEvents = 'none';
+    handTurnMarker[turnCount].style.opacity = 1;
+    turnMessage.innerText = `It is ${player}'s turn`;
+    whiteTransition.style.opacity = 1;
+    setTimeout(function(){
+        whiteTransition.style.opacity = 0;
+        rollDicesBtn.style.pointerEvents = 'all';
+    }, 2000);
+}
+
+
+// GAME SECTION
+
 function rollDices () {
     if (ableToRoll === 1) {
         if (dCount < 5) {
@@ -152,9 +181,6 @@ function rollDices () {
     }
 }
 
-let dCount = 0;
-
-// GENERATING NUMBERS
 function diceResultGen () { 
     let rangeOfDices = [4, 6, 8, 10, 20];
     if (dCount < 5) {
@@ -190,12 +216,7 @@ function dSelection (i) {
     }    
 }
 
-let scoreRound = 0
-let turnCount = 0;
-let numberOfRound = 0;
-
 function updateTableScore(result){
-    // result = parseInt(result, 10);
     scoreRound = scoreRound + result;
     document.querySelector('.tableScore span').innerText = scoreRound;
 };
@@ -205,27 +226,19 @@ function updateRoundScore(scoreRound){
     playerScores[turnCount].innerHTML = playerScore;
 };
 
-// WHITE TRANISTION SCREEN BETWEEN EACH TURN
-function newTurn (player) {
-    handTurnMarker[turnCount].style.opacity = 1;
-    // playerName[turnCount].innerHTML = turnCrownMarker.concat(playerName[turnCount].innerHTML);
-
-    turnMessage.innerText = `It is ${player}'s turn`;
-    whiteTransition.style.opacity = 1;
-    // rollDicesBtn.style.pointerEvents = 'none';
-    // INCREMENT TURNCOUNT, KEEPING RIGHT NUMBER EVEN IN LATER ROUNDS
-    setTimeout(function(){whiteTransition.style.opacity = 0}, 2000);
-}
-
 // LAYOUT RESET TO INITATION SETUP FOR NEW TURN + TRIGGER OF END OF GAME SCENARIO
 function newGameSetup () {
-    if (turnCount === (playerCount-1)) {
-        // NEXT ROUND, GAME CONTINUES
+
+    if (turnCount === (playerCount-1)) { // END OF ROUND
+        if (tutorialOn === true && numberOfRound === 0) {
+            tutoScore();
+        };
+
         turnCount = (turnCount + 1) - playerCount;
         pushScoresToTotal();
         playerScores.forEach(score => score.innerText = "0")
 
-    } else {turnCount++ }
+    } else {turnCount++ } // NEW TURN SAME ROUND
 
     dCount = 0;
     ableToRoll = 1;
@@ -246,49 +259,74 @@ function newGameSetup () {
     document.querySelector('.tableScore').style.fontSize = '1rem';
 }
 
-const pushScoresToTotal = () => {
+// END OF A ROUND, ALL ROUND SCORES GO TO TOTAL SECTION + END OF GAME SCENARIO
+function pushScoresToTotal() {
     playerScoresArr = Array.from(playerScores);
     let newArray = playerScoresArr.map(score => parseInt(score.innerText));
     let bestScore = Math.max(...newArray)
-    var winnerIndex = newArray.indexOf(bestScore);
+    winnerIndex = newArray.indexOf(bestScore);
 
     for (i = 0; i < playerTotalScore.length; i++) {
         let totalScore = parseInt(playerTotalScore[i].innerText) - parseInt(playerScoresArr[i].innerText);
-        playerTotalScore[i].innerText = totalScore;
+        playerTotalScore[i].innerText = `${totalScore} points = ${(totalScore * euroParameter).toFixed(2)}€`;
     }
 
     let winnerScore = newArray.reduce((a, b) => a + b, 0) - bestScore;
     let winnerScoreAccumulation = bestScore + winnerScore + parseInt(playerTotalScore[winnerIndex].innerText);
-    playerTotalScore[winnerIndex].innerText = winnerScoreAccumulation;
-
-    const endOfGame = () => {
-        const tableOfFinalScore = document.querySelector('.tableOfFinalScore');
-        const playerLines = document.querySelectorAll('.tableOfFinalScore span');
-    
-        rollDicesBtn.style.pointerEvents = 'none';
-        whiteTransition.style.opacity = 1;
-        turnMessage.innerText = `${listOfPlayer[winnerIndex]} is the winner`;
-        
-        setTimeout(function(){
-            turnMessage.style.display = 'none';
-            tableOfFinalScore.style.display = 'block';
-        }, 2000);
-    
-        for (i = 0; i < playerTotalScore.length; i++) {
-            let moneyWin = (parseInt(playerTotalScore[i].innerText) * euroParameter).toFixed(2); // getting each score converted in Euro with 2 numbers after coma
-            if (parseInt(playerTotalScore[i].innerText) > 0) {
-                playerLines[i].innerText = `${listOfPlayer[i]} earns ${moneyWin}€`
-            } else {
-                playerLines[i].innerText = `${listOfPlayer[i]} loses ${moneyWin}€`
-            }
-        }
-    }
+    playerTotalScore[winnerIndex].innerText = `${winnerScoreAccumulation} points = ${(winnerScoreAccumulation * euroParameter).toFixed(2)}€`;
     
     // END OF GAME OR CONTINUE
     if (numberOfRound === roundParameter) {
         endOfGame(winnerIndex);
         return
     } else {numberOfRound++} 
-
 }   
 
+function endOfGame() {
+    const tableOfFinalScore = document.querySelector('.tableOfFinalScore');
+    const playerLines = document.querySelectorAll('.tableOfFinalScore span');
+
+    rollDicesBtn.style.pointerEvents = 'none';
+    whiteTransition.style.opacity = 1;
+    turnMessage.innerText = `${listOfPlayer[winnerIndex]} is the winner`;
+    
+    setTimeout(function(){
+        turnMessage.style.display = 'none';
+        tableOfFinalScore.style.display = 'block';
+    }, 2000);
+
+    for (i = 0; i < playerTotalScore.length; i++) {
+        let moneyWin = (parseInt(playerTotalScore[i].innerText) * euroParameter).toFixed(2); // getting each score converted in Euro with 2 numbers after coma
+        if (parseInt(playerTotalScore[i].innerText) > 0) {
+            playerLines[i].innerText = `${listOfPlayer[i]} earns ${moneyWin}€`
+        } else {
+            playerLines[i].innerText = `${listOfPlayer[i]} loses ${moneyWin}€`
+        }
+    }
+}
+
+// TUTORIALS FUNCTIONS
+function tutoRules() {
+    rollDicesBtn.style.pointerEvents = 'none';
+    tutorialRules.style.opacity = '1';
+    tutorialRulesOkBtn.style.pointerEvents = 'all';
+}
+function tutorialRulesOk() {
+    rollDicesBtn.style.pointerEvents = 'all';
+    tutorialRules.style.opacity = '0';
+    tutorialRulesOkBtn.style.pointerEvents = 'none';
+    setTimeout(() => tutorialRules.style.display = 'none', 1000);
+    rollDicesBtn.style.animation = 'blinkBtn 1.2s ease 3';
+}
+function tutoScore() {
+    console.log('heheh');
+    rollDicesBtn.style.pointerEvents = 'none';
+    tutorialScore.style.opacity = '1';
+    tutorialScoreOkBtn.style.pointerEvents ='all';
+}
+function tutorialScoreOk() {
+    rollDicesBtn.style.pointerEvents = 'all';
+    tutorialScore.style.opacity = '0';
+    tutorialScoreOkBtn.style.pointerEvents ='none';
+    setTimeout(() => tutorialScore.style.display = 'none', 1000);
+}

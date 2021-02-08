@@ -7,16 +7,7 @@ Antonin:
 
 App responsive
 
-Chaque point vaut tant d'euros:
-- 10 centimes (fait 10 euros pour une grosse partie)
-
 Roadmap des features:
 - Prendre en compte l'égalité
-- Mettre en avant le nom du joueur du tours
-
-- Selection nombre de rounds 
-- Chnager valeur du point (défaut 10cent)
-- Panneau Fin de jeu (reprise du Layout blanc qui sépare les tours)
-
 - Navbar avec Rules et Credits sections
 - Tutorial
