@@ -25,7 +25,7 @@ let handTurnMarker = 0;
 
 // Variables
 let playerCount = 2
-let ableToRoll = 1;
+let ableToRoll = true;
 let ableToSelect = 0;
 let dCount = 0;
 let scoreRound = 0
@@ -51,7 +51,7 @@ addPlayerBtn.addEventListener('click', addPlayer);
 removePlayerBtn.addEventListener('click', removePlayer);
 startGameBtn.addEventListener('click', startGame);
 rollDicesBtn.addEventListener('click', () => {
-    if (ableToRoll === 1) { rollDices() } else { return }
+    if (ableToRoll === true) { rollDices() } else { return }
 });
 tutorialRulesOkBtn.addEventListener('click',tutorialRulesOk);
 tutorialScoreOkBtn.addEventListener('click',tutorialScoreOk);
@@ -173,7 +173,7 @@ function rollDices () {
     if (dCount < 5) {
         dices.forEach(dice => dice.style.animation = 'shakeDice 1.5s ease'); // DICES ANIMATION
         setTimeout(() => {diceResultGen()}, 1500); // UPDATING DICE VALUES END OF ANIMATION
-        ableToRoll = 0;
+        ableToRoll = false;
         ableToSelect = 2;
     } else {
         endOfTurn();
@@ -205,12 +205,12 @@ function dSelection(i) {
     dices[i].style.display = 'none';
     dicesSelected[i].lastElementChild.innerText = dValues[i].innerText;
     dicesSelected[i].style.opacity = 1;
-    ableToRoll = 1;
+    ableToRoll = true;
     ableToSelect--;
     dCount++;
     updateTableScore(parseInt(dValues[i].innerText));
     if (dCount === 5) {
-        ableToRoll = 1;
+        ableToRoll = true;
         rollDicesBtn.innerText = 'Next Turn';
         document.querySelector('.diceSection p').style.opacity = '0';
         document.querySelector('.tableScore').style.fontSize = '50px';
@@ -236,7 +236,7 @@ function newGameSetup () {
 }
 
 function endOfRound() {
-    if (tutorialOn === true && roundCount === 0) { tutoScore() };
+    if (tutorialOn === true && roundCount === 0) {setTimeout(() => {tutoScore()}, 2000)};
     turnCount = (turnCount + 1) - playerCount;
     pushScoresToTotal();
     playerScores.forEach(score => score.innerText = "0")
@@ -244,7 +244,7 @@ function endOfRound() {
 
 function parametersReset() {
     dCount = 0;
-    ableToRoll = 1;
+    ableToRoll = true;
     ableToSelect = 0;
     scoreRound = 0;
     updateTableScore(0);
@@ -323,7 +323,6 @@ function tutorialRulesOk() {
     rollDicesBtn.style.animation = 'blinkBtn 1.2s ease 3';
 }
 function tutoScore() {
-    console.log('heheh');
     rollDicesBtn.style.pointerEvents = 'none';
     tutorialScore.style.opacity = '1';
     tutorialScoreOkBtn.style.pointerEvents ='all';
