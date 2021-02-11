@@ -12,7 +12,6 @@ const tutorialRules = document.querySelector('.tutorialRule');
 const tutorialScore = document.querySelector('.tutorialScore');
 const tutorialRulesOkBtn = document.querySelector('.tutorialRulesOkBtn');
 const tutorialScoreOkBtn = document.querySelector('.tutorialScoreOkBtn');
-
 let listOfPlayer = [];
 let playerScores = [];
 const turnMessage = document.querySelector('.turnMessage');
@@ -42,8 +41,6 @@ const d10 = document.querySelector('.d10');
 const d20 = document.querySelector('.d20');
 const dValues = document.querySelectorAll('.diceSection span') 
 const dices = [d4, d6, d8, d10, d20];
-
-    // Dice Selected
 const dicesSelected = document.querySelectorAll('.selectedDices li');
 
 // Event Listeners
@@ -55,10 +52,7 @@ rollDicesBtn.addEventListener('click', () => {
 });
 tutorialRulesOkBtn.addEventListener('click',tutorialRulesOk);
 tutorialScoreOkBtn.addEventListener('click',tutorialScoreOk);
-dices.forEach(dice => {
-dice.addEventListener('animationend', function(){
-    this.style.animation = '';
-})})
+for (let dice of dices) {dice.addEventListener('animationend', function(){ this.style.animation = '' })}
 
 // MAPPING EVENT LISTENER TO EACH DICE:
 for (let i = 0; i < 5; i++) {
@@ -120,9 +114,7 @@ function getParameters() {
 
 function collectingPlayerNames () {
     const pNames = document.querySelectorAll('.intro .pName');
-    for (let i = 0; i < pNames.length; i++) {
-        listOfPlayer.push(pNames[i].value)
-    } 
+    for (let pName of pNames) {listOfPlayer.push(pName.value)};
 }
 
 function generatePlayerLines() {
@@ -171,8 +163,8 @@ function newTurn (player) {
 
 function rollDices () {
     if (dCount < 5) {
-        dices.forEach(dice => dice.style.animation = 'shakeDice 1.5s ease'); // DICES ANIMATION
-        setTimeout(() => {diceResultGen()}, 1500); // UPDATING DICE VALUES END OF ANIMATION
+        for (let dice of dices) {dice.style.animation = 'shakeDice 1.5s ease'};
+        setTimeout(() => {diceResultGen()}, 1500); // Updating dice values at end of animation
         ableToRoll = false;
         ableToSelect = 2;
     } else {
@@ -187,7 +179,7 @@ function diceResultGen () {
         for (i = 0; i < rangeOfDices.length; i++) {
             dValues[i].innerText = (diceMath(rangeOfDices[i]));
         }
-        dices.forEach(dice => dice.style.pointerEvents = "all");
+        for (let dice of dices) {dice.style.pointerEvents = "all"};
         document.querySelector('.diceSection p').style.opacity = '1';
     } else {
         return
@@ -198,7 +190,7 @@ function endOfTurn() {
     updateRoundScore(scoreRound);
     handTurnMarker[turnCount].style.opacity = 0;
     newGameSetup(); 
-    if(!finishGame) { newTurn(listOfPlayer[turnCount]) } ; // THIS NEEDS TO NOT RUN AT LAST TURN
+    if(!finishGame) { newTurn(listOfPlayer[turnCount]) } ; // Not running at final turn
 }
 
 function dSelection(i) {
@@ -209,12 +201,14 @@ function dSelection(i) {
     ableToSelect--;
     dCount++;
     updateTableScore(parseInt(dValues[i].innerText));
-    if (dCount === 5) {
-        ableToRoll = true;
-        rollDicesBtn.innerText = 'Next Turn';
-        document.querySelector('.diceSection p').style.opacity = '0';
-        document.querySelector('.tableScore').style.fontSize = '50px';
-    }    
+    if (dCount === 5) { finishSelection() } 
+}
+
+function finishSelection() { // END OF TURN LAYOUT FOR SELECTED DICES
+    ableToRoll = true;
+    rollDicesBtn.innerText = 'Next Turn';
+    document.querySelector('.diceSection p').style.opacity = '0';
+    document.querySelector('.tableScore').style.fontSize = '50px';
 }
 
 function updateTableScore(result){
@@ -227,8 +221,7 @@ function updateRoundScore(scoreRound){
     playerScores[turnCount].innerHTML = playerScore;
 };
 
-// LAYOUT RESET TO INITATION SETUP FOR NEW TURN + TRIGGER OF END OF GAME SCENARIO
-function newGameSetup () {
+function newGameSetup () { // LAYOUT RESET TO INITIAL TURN SETUP + TRIGGER OF END OF GAME SCENARIO
     turnCount === (playerCount - 1) ? endOfRound() : turnCount++; // 
     parametersReset();
     handTurnMarker[turnCount].style.opacity = 1;
@@ -239,7 +232,7 @@ function endOfRound() {
     if (tutorialOn === true && roundCount === 0) {setTimeout(() => {tutoScore()}, 2000)};
     turnCount = (turnCount + 1) - playerCount;
     pushScoresToTotal();
-    playerScores.forEach(score => score.innerText = "0")
+    for (let score of playerScores) {score.innerText = "0"};
 }
 
 function parametersReset() {
@@ -252,19 +245,19 @@ function parametersReset() {
 }
 
 function dicesReset() {
-    dices.forEach(dice => {
+    for (let dice of dices) {
         dice.style.animation = 'animationend';
         dice.style.display = 'inline-block';
         dice.style.pointerEvents = 'none';
-    });
-    dValues.forEach(dValue => dValue.innerText = ("?"));
-    dicesSelected.forEach(diceSelected => diceSelected.style.opacity = 0);
+    };
+    for (let dValue of dValues) {dValue.innerText = ("?")};
+    for (let diceSelected of dicesSelected) {diceSelected.style.opacity = 0};
     rollDicesBtn.innerHTML = 'Roll Dices <i class="fas fa-dice">';
 }
 
 // END OF A ROUND, ALL ROUND SCORES GO TO TOTAL SECTION + END OF GAME SCENARIO
 function pushScoresToTotal() {
-    playerScoresArr = Array.from(playerScores);
+    playerScoresArr = Array.from(playerScores); // Conversion Node to Array
     let newArray = playerScoresArr.map(score => parseInt(score.innerText));
     let bestScore = Math.max(...newArray)
     winnerIndex = newArray.indexOf(bestScore);
@@ -285,10 +278,9 @@ function pushScoresToTotal() {
 }   
 
 function endOfGame(winnerIndex) {
-    console.log('endofgame');
     const tableOfFinalScore = document.querySelector('.tableOfFinalScore');
     const playerLines = document.querySelectorAll('.tableOfFinalScore span');
-
+    
     rollDicesBtn.style.pointerEvents = 'none';
     whiteTransition.style.opacity = 1;
     turnMessage.innerText = `${listOfPlayer[winnerIndex]} is the winner`;
@@ -300,7 +292,7 @@ function endOfGame(winnerIndex) {
     }, 2000);
 
     for (i = 0; i < playerTotalScore.length; i++) {
-        let moneyWin = (parseInt(playerTotalScore[i].innerText) * euroParameter).toFixed(2); // getting each score converted in Euro with 2 numbers after coma
+        let moneyWin = (parseInt(playerTotalScore[i].innerText) * euroParameter).toFixed(2); // Scores to euros: 2 numbers after coma
         if (parseInt(playerTotalScore[i].innerText) > 0) {
             playerLines[i].innerText = `${listOfPlayer[i]} earns ${moneyWin}€`
         } else {
