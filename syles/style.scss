@@ -1,449 +1,445 @@
 @mixin button {
-    border-radius: 3px;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #210457;
-    background-color: #d6dce4;
-    &:hover {
-        background-color: #e100ffa9;
-        color: #fff;
-        transition: all 0.3s ease;
-    }
-}  
-
-@mixin tutorial {
-    opacity: 0;
-    transition: all 1s ease;
-    pointer-events: none;
-    position: absolute;
-    z-index: 1;
-    left: 30px;
-    top: 110px;
-    background: rgba(255, 255, 255, 0.959);
-    width: 90%;
-    height: 330px;
-    border-radius: 10px;
+  border-radius: 3px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #210457;
+  background-color: #d6dce4;
+  &:hover {
+    background-color: #e100ffa9;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
 }
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    border: none;
+@mixin tutorial {
+  opacity: 0;
+  transition: all 1s ease;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  left: 30px;
+  top: 110px;
+  background: rgba(255, 255, 255, 0.959);
+  width: 90%;
+  height: 330px;
+  border-radius: 10px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
 }
 
 body {
-    font-family: 'Palanquin', sans-serif;
-    background-image: linear-gradient(90deg, #e100ff, #ff5e00)
+  font-family: 'Palanquin', sans-serif;
+  background-image: linear-gradient(90deg, #e100ff, #ff5e00);
 }
 
-
 section {
-    height: 100vh;
-} 
+  height: 100vh;
+}
 
 header {
-    padding-top: 10px;
-    min-height: 6rem;
-    text-align: center;
-    min-height: 5rem;
-    height: 15vh;
-    font-size: 3rem;
+  padding-top: 10px;
+  min-height: 6rem;
+  text-align: center;
+  min-height: 5rem;
+  height: 15vh;
+  font-size: 3rem;
 }
 
 .intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    color: black;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  form {
+    padding: 1rem;
+  }
+
+  li {
+    font-size: 2rem;
+  }
+  button {
+    @include button();
+  }
+  input {
+    padding: 0.5rem;
+    background-color: #d6dce4;
+  }
+  .parameters {
+    .numberRounds,
+    .pointToEuro {
+      margin-left: 5.5rem;
+    }
+    // text-align: center;
     color: white;
-    header {
-        display: flex;
-        align-items: flex-end;
-        color: black;
+    p {
+      text-align: center;
+      color: rgba(231, 231, 231, 0.795);
+      font-size: 13px;
     }
-    h1 {
-        font-size: 2rem;
+  }
+  select {
+    strong {
+      font-weight: bold;
     }
-    form {
-        padding: 1rem;
-    }
+  }
 
-    li {
-        font-size: 2rem;
-    }
-    button {
-        @include button()
-    }
-    input {
-        padding: 0.5rem;
-        background-color:#d6dce4;
-    }
-    .parameters {
-        .numberRounds,
-        .pointToEuro {
-            margin-left: 5.5rem;
-        }
-        // text-align: center;
-        color: white;
-        p {
-            text-align: center;
-            color: rgba(231, 231, 231, 0.795);
-            font-size: 13px;
-        }
-    
-    }
-    select {
-        strong {
-            font-weight: bold;
-        }
-    }
-
-    .startGame {
-        margin-top: 1.5rem;
-        font-size: 1rem;
-        font-weight: bold;
-    }
+  .startGame {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .addPlayer,
 .removePlayer {
-    width: 5rem;
-    position: relative;
-    bottom: 0.5rem;
-    i {
-        padding-right: 0.5rem;
-    }
+  width: 5rem;
+  position: relative;
+  bottom: 0.5rem;
+  i {
+    padding-right: 0.5rem;
+  }
 }
 
-.addRemoveBtn{
-    position: relative;
-    bottom: 20px;
-    li {
-        display: inline;
-    }
+.addRemoveBtn {
+  position: relative;
+  bottom: 20px;
+  li {
+    display: inline;
+  }
 }
 
 .whiteTransition {
-    opacity: 0;
-    pointer-events: none;
-    transition: all 1s ease; 
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 3.5rem;
-    h1 {
-        text-align: center;
-        font-size: 3rem;
-    }
-    .tableOfFinalScore {
-        span {
-            font-size: 2rem;
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-        }
-        .disclaimer {
-            font-size: 10px;
-        }
-    }
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s ease;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+  }
+  .tableOfFinalScore {
     span {
-        text-align: center;
-        color: black; 
-        padding: 0px 20px;
-        width: auto;
-        border-radius: 4px;
-        // background-color: rgba(255, 255, 255, 1);
+      font-size: 2rem;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
     }
+    .disclaimer {
+      font-size: 10px;
+    }
+  }
+  span {
+    text-align: center;
+    color: black;
+    padding: 0px 20px;
+    width: auto;
+    border-radius: 4px;
+    // background-color: rgba(255, 255, 255, 1);
+  }
 }
 
 .match {
-    position: absolute;
-    height: 30rem;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    transition: opacity 0.5s ease 0.5s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  height: 30rem;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    header {
-        position: relative;
-        bottom: 3rem;
-    }
+  header {
+    position: relative;
+    bottom: 3rem;
+  }
 
-    h1 { 
-        text-align: center; 
-        margin: 5px;
-    }
+  h1 {
+    text-align: center;
+    margin: 5px;
+  }
 
-    img,
-    .diceSection button {
+  img,
+  .diceSection button {
     height: 80px;
     width: 80px;
-    }
+  }
 
-    button {
-        cursor: pointer;
-    }
+  button {
+    cursor: pointer;
+  }
 }
 
 .middleSection {
-    width: 45rem;
-    height: 25rem;
-    display: flex;
-    justify-content: space-between;
+  width: 45rem;
+  height: 25rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tutorialRule {
-    @include tutorial();
-    .rules {
-        padding-left: 10px;
-    }
+  @include tutorial();
+  .rules {
+    padding-left: 10px;
+  }
 }
 
 .tutorialScore {
-    @include tutorial();
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .scoreImg{
-        border-radius: 10px;
-        height: 160px;
-        width: 385px;
-        background-image: url(../assets/score-example.PNG);
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
+  @include tutorial();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .scoreImg {
+    border-radius: 10px;
+    height: 160px;
+    width: 385px;
+    background-image: url(../assets/score-example.PNG);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }
 
 .tutorialRule,
 .tutorialScore {
-    font-size: 14px;
-    p {
-        margin: 10px 0px;
-    }
-    .buttonOk {
-        width: 100%;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    button {
-        pointer-events: none;
-        font-weight: bold;
-        @include button();
-        width: 100px;
-    }
+  font-size: 14px;
+  p {
+    margin: 10px 0px;
+  }
+  .buttonOk {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  button {
+    pointer-events: none;
+    font-weight: bold;
+    @include button();
+    width: 100px;
+  }
 }
 
 .gameBox,
-.roundScore{
-    color: white;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.384);
-    border-radius: 6px;
+.roundScore {
+  color: white;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.384);
+  border-radius: 6px;
 }
 
 .roundScore {
-    padding: 0;
-    width: 35%;
+  padding: 0;
+  width: 35%;
 }
 
-.totalScore{ 
-    padding: 1rem;
-    width: 25rem;
-    color: white;
-    .pScore{
-        // letter-spacing: 1px;
-    }
+.totalScore {
+  padding: 1rem;
+  width: 25rem;
+  color: white;
 }
 
 .gameBox {
-    padding: 1rem;
-    width: 63%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+  padding: 1rem;
+  width: 63%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 
-    .rollBtn {
-        height: 3rem;
-        width: 8rem;
-        margin: auto;
-        border-radius: 3px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        color: #210457;
-        background-color: #d6dce4;
-        &:hover{
-            background-color: #e100ffa9;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
+  .rollBtn {
+    height: 3rem;
+    width: 8rem;
+    margin: auto;
+    border-radius: 3px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #210457;
+    background-color: #d6dce4;
+    &:hover {
+      background-color: #e100ffa9;
+      color: #fff;
+      transition: all 0.3s ease;
     }
+  }
 }
 
 .diceSection {
-    height: 15rem;
-    text-align: center;
-    button {
-        background: none;
-        pointer-events: none;
-        margin: 0px 20px;
-        &:hover {
-            border-radius: 50%;
-            background: #ff5e0098;
-        }
-        &:active{
-            background: #ff5e00c5;
-        } 
-        &:focus {
-            outline-style: none;
-        }
-    } 
-    p {
-        margin: 10px 0;
-        opacity: 0;
+  height: 15rem;
+  text-align: center;
+  button {
+    background: none;
+    pointer-events: none;
+    margin: 0px 20px;
+    &:hover {
+      border-radius: 50%;
+      background: #ff5e0098;
     }
-    span {
-        color: white;
-        font-size: 2rem;
-        position: relative;
-        bottom: 3.5rem;
+    &:active {
+      background: #ff5e00c5;
     }
-    .d6 span {
-        right: 2px;
+    &:focus {
+      outline-style: none;
     }
-    .d8 span {
-        bottom: 3.8rem;
-        right: 1px
-    }
-    .d10 span {
-        bottom: 3.7rem;
-        font-size: 1.6rem;
-    }
-    .d20 span {
-        font-size: 1.2rem;
-    }
-    .d10, .d20 {
-        margin: 10px 7px 0px 7px;
-    }
+  }
+  p {
+    margin: 10px 0;
+    opacity: 0;
+  }
+  span {
+    color: white;
+    font-size: 2rem;
+    position: relative;
+    bottom: 3.5rem;
+  }
+  .d6 span {
+    right: 2px;
+  }
+  .d8 span {
+    bottom: 3.8rem;
+    right: 1px;
+  }
+  .d10 span {
+    bottom: 3.7rem;
+    font-size: 1.6rem;
+  }
+  .d20 span {
+    font-size: 1.2rem;
+  }
+  .d10,
+  .d20 {
+    margin: 10px 7px 0px 7px;
+  }
 }
 
 .tableScore {
-    transition: all 1s ease;
+  transition: all 1s ease;
+  margin-left: 1rem;
+  span {
     margin-left: 1rem;
-    span {
-        margin-left: 1rem;
-    }
+  }
 }
 
 .selectedDices {
-    border-top: solid 1px #d6dce4;
+  border-top: solid 1px #d6dce4;
+  display: flex;
+  justify-content: center;
+  ul {
+    width: 80%;
     display: flex;
-    justify-content: center;
-    ul {
-        width: 80%;
-        display: flex;
-        justify-content: space-between;
-    }
-    img {
-        height: 50px;
-        width: 50px;
-    }
-    li {
-        opacity: 0;
-        margin-top: 0.5rem;
-        width: 50px;
-        height: 50px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        text-align: center;
-    }
-    .scoreD4 {
-        background-image: url('../assets/d4.png');
-    }
-    .scoreD6 {
-        background-image: url('../assets/d6.png');
-    }
-    .scoreD8 {
-        background-image: url('../assets/d8.png');
-    }
-    .scoreD10 {
-        background-image: url('../assets/d10.png');
-    }
-    .scoreD20 {
-        background-image: url('../assets/d20.png');
-    }
-    span {
-        color: white;
-        font-size: 1.4rem;
-        position: relative;
-        top: 0.2rem;
-        pointer-events: none;
-    }
-    .scoreD10 span,
-    .scoreD20 span {
-        font-size: 1.1rem;
-        top: 5px;
-    }
+    justify-content: space-between;
+  }
+  img {
+    height: 50px;
+    width: 50px;
+  }
+  li {
+    opacity: 0;
+    margin-top: 0.5rem;
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+  }
+  .scoreD4 {
+    background-image: url('../assets/d4.png');
+  }
+  .scoreD6 {
+    background-image: url('../assets/d6.png');
+  }
+  .scoreD8 {
+    background-image: url('../assets/d8.png');
+  }
+  .scoreD10 {
+    background-image: url('../assets/d10.png');
+  }
+  .scoreD20 {
+    background-image: url('../assets/d20.png');
+  }
+  span {
+    color: white;
+    font-size: 1.4rem;
+    position: relative;
+    top: 0.2rem;
+    pointer-events: none;
+  }
+  .scoreD10 span,
+  .scoreD20 span {
+    font-size: 1.1rem;
+    top: 5px;
+  }
 }
 
 .spanName {
-    display: inline-block;
-    width: 150px;
-    text-align: right;
-    padding-right: 10px;
-    i {
-        margin-right: 5px;
-        opacity: 0;
-    }
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  padding-right: 10px;
+  i {
+    margin-right: 5px;
+    opacity: 0;
+  }
 }
 
 .fadeIn {
-    opacity: 1;
+  opacity: 1;
 }
 
 .fadeOut {
-    display: none;
+  display: none;
 }
 
 @keyframes shakeDice {
-    0% {
-        pointer-events: none;
-        transform: rotateZ(0deg) translateY(0px);
-    }
-    99% {
-        pointer-events: none;
-    }
-    100% {
-        pointer-events: all;
-        transform: rotateZ(1080deg);
-    }
+  0% {
+    pointer-events: none;
+    transform: rotateZ(0deg) translateY(0px);
+  }
+  99% {
+    pointer-events: none;
+  }
+  100% {
+    pointer-events: all;
+    transform: rotateZ(1080deg);
+  }
 }
 
 @keyframes blinkBtn {
-    0% {
-        box-shadow: none;
-    }
-    50% {
-        box-shadow: 0px 0px 20px 7px #ff5e00;
-    }
-    100% {
-        box-shadow: none;
-    }
+  0% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0px 0px 20px 7px #ff5e00;
+  }
+  100% {
+    box-shadow: none;
+  }
 }
